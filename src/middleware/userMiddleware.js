@@ -17,8 +17,8 @@ const userMiddleware = async (req,res,next)=>{
             throw new Error("User not found")
 
         const isBlocked = await redisClient.exists(`token:${token}`);
-        if(!isBlocked)
-            throw new Error("Invalid token");
+        if(isBlocked)
+            throw new Error("Token has been invalidated");
         req.result = result;
         next();
     } catch (error) {
