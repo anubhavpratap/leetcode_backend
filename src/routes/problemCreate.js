@@ -10,6 +10,6 @@ problemRouter.delete("/delete/:id",adminMiddleware, deleteProblem);
 problemRouter.get("/problemById/:id",userMiddleware,getProblemById);
 problemRouter.get("/getAllProblem",userMiddleware, getAllProblem);
 problemRouter.get("/problemSolvedByUser",userMiddleware, getAllProblemSolvedByUser);
-problemRouter.get("submittedProblem/:pid",userMiddleware,userSubmissionOfProblem);
+problemRouter.get("/submissions/:pid",userMiddleware,userSubmissionOfProblem);
 
 module.exports = problemRouter;

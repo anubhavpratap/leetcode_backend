@@ -1,5 +1,7 @@
 const Problem = require("../models/problem");
-const { getLanguageById, submitBatch } = require("../utils/problemRequest");
+const Submission = require("../models/submission");
+const User = require("../models/user");
+const { getLanguageById, submitBatch, submitToken } = require("../utils/problemRequest");
 
 const createProblem = async (req, res) => {
   const { visibleTestCases, referenceSolution } = req.body;
@@ -19,6 +21,7 @@ const createProblem = async (req, res) => {
       const results = await submitToken(tokens);
 
       for (const result of results) {
+        console.log(result)
         if (result.status_id !== 3) {
           return res.status(400).send("Error occurred while validating.");
         }
@@ -132,7 +135,7 @@ const getAllProblemSolvedByUser = async (req, res) => {
 
     res.status(200).send(user.problemSolved);
   } catch (err) {
-    res.status(500).send("Server Error");
+    res.status(500).send("Error:"+err);
   }
 };
 
@@ -148,7 +151,7 @@ const userSubmissionOfProblem = async (req, res) => {
 
     res.status(200).send(submissions);
   } catch (err) {
-    res.status(500).send("Internal Server Error");
+    res.status(500).send("Error"+err);
   }
 };
 

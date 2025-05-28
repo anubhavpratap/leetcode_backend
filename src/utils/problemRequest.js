@@ -46,7 +46,7 @@ const submitBatch = async (submissions)=>{
 
 
 const waiting = async(timer)=>{
-  setTimeout(()=>{
+  await setTimeout(()=>{
     return 1;
   },timer);
 }

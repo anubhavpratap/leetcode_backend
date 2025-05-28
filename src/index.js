@@ -5,7 +5,8 @@ require('dotenv').config()
 const connectDB = require('./config/database.js')
 const redisClient = require('./config/redis.js');
 const userRouter = require('./routes/userAuth.js');
-const problemRouter = require('./routes/problemCreate.js')
+const problemRouter = require('./routes/problemCreate.js');
+const submitRouter = require('./routes/userSubmit.js');
 
 
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(cookieParser());
 
 app.use('/user',userRouter);
 app.use('/problem',problemRouter);
+app.use('/submission',submitRouter);
 
 connectDB().then(()=>{
     redisClient.connect();
